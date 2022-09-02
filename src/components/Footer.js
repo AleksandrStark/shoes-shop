@@ -4,43 +4,73 @@ import Grid from '@mui/material/Grid';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { Link, Typography } from '@mui/material';
+import paypal from '../img/footer-icons/paypal.png';
+import mastercard from '../img/footer-icons/mastercard.png';
+import visa from '../img/footer-icons/visa.png';
+
+const prevDefault = (event) => event.preventDefault();
 
 const Footer = () => {
 	return (
-		<footer className="footer">
-			<Box sx={{ flexGrow: 1 }} color="gray">
-				<Grid container spacing={5}>
-					<Grid item xs={3}>
-						<Box sx={{ mx: 'auto', fontWeight: '700' }}>Информация</Box>
-						<Box>
-							<a href="/">О магазине</a>
+		<Box className="footer">
+			<Box sx={{ flexGrow: 1, p: 3 }} color="gray">
+				<Grid container spacing={15}>
+					<Grid item xs={4}>
+						<Box sx={{ mx: 'auto', fontWeight: '700' }} color="black">
+							Информация
 						</Box>
-						<Box>
-							<a href="/">Каталог</a>
+						<Box sx={{ p: 1 }}>
+							<Link href="/" underline="none" color="secondary.light">
+								О магазине
+							</Link>
 						</Box>
-						<Box>
-							<a href="/">Контакты</a>
+						<Box sx={{ p: 1 }}>
+							<Link href="/catalog" underline="none" color="secondary.light">
+								Каталог
+							</Link>
+						</Box>
+						<Box sx={{ p: 1 }}>
+							<Link href="/contacts" underline="none" color="secondary.light">
+								Контакты
+							</Link>
 						</Box>
 					</Grid>
-					<Grid item xs={3}>
-						<Box sx={{ mx: 'auto', fontWeight: '700' }}>Принимаем к оплате</Box>
+					<Grid item xs={4}>
+						<Box sx={{ mx: 'auto', fontWeight: '700' }} color="black">
+							Принимаем к оплате
+						</Box>
 						<Box>
-							2009-2022 с. BosaNoga.ru - модный интернет-магазин обуви и
-							аксессуаров. Все права защищены. Доставка по всей России.{' '}
+							<Box>
+								<img src={paypal} alt="paypal" />
+								<img src={mastercard} alt="mastercard" />
+								<img src={visa} alt="visa" />
+							</Box>
+							<Typography variant="caption">
+								2009-2022 с. BosaNoga.ru - модный интернет-магазин обуви и
+								аксессуаров. Все права защищены. Доставка по всей России.
+							</Typography>
 						</Box>
 					</Grid>
-					<Grid item xs={3}>
-						<Box sx={{ mx: 'auto', fontWeight: '700' }}>Контакты</Box>
-						<Box>+7 499 79 03 503</Box>
-						<Box>Ежедневно: с 9-00 до 21-00</Box>
-						<Box>office@bosanoga.ru</Box>
-						<Box>
-							<TwitterIcon /> <FacebookIcon /> <InstagramIcon />
+					<Grid item xs={4}>
+						<Box
+							sx={{ mx: 'auto', fontWeight: '700', textAlign: 'right' }}
+							color="black"
+						>
+							Контакты
+						</Box>
+						<Box sx={{ textAlign: 'right' }}>
+							<Box color="secondary.light">+7 499 79 03 503</Box>
+							<Box>Ежедневно: с 9-00 до 21-00</Box>
+							<Box color="secondary.light">office@bosanoga.ru</Box>
+							<Box>
+								<TwitterIcon /> <FacebookIcon /> <InstagramIcon />
+							</Box>
 						</Box>
 					</Grid>
 				</Grid>
 			</Box>
-		</footer>
+		</Box>
 	);
 };
 

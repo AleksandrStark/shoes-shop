@@ -5,13 +5,35 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/system';
+import { BrowserRouter } from 'react-router-dom';
+
 const theme = createTheme({
+	typography: {
+		fontFamily: [
+			'-apple-system',
+			'BlinkMacSystemFont',
+			'"Segoe UI"',
+			'Roboto',
+			'"Helvetica Neue"',
+			'Courier',
+			'monospace',
+			'Arial',
+			'sans-serif',
+			'"Apple Color Emoji"',
+			'"Segoe UI Emoji"',
+			'"Segoe UI Symbol"',
+		].join(','),
+		button: {
+			textTransform: 'none',
+		},
+	},
 	palette: {
 		primary: {
 			main: '#f6f8fa',
 		},
 		secondary: {
-			main: '#212529;',
+			main: '#ff1493',
+			light: 'dodgerblue',
 		},
 	},
 });
@@ -19,9 +41,11 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<ThemeProvider theme={theme}>
-			<App />
-		</ThemeProvider>
+		<BrowserRouter>
+			<ThemeProvider theme={theme}>
+				<App />
+			</ThemeProvider>
+		</BrowserRouter>
 	</React.StrictMode>
 );
 

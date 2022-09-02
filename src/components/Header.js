@@ -7,17 +7,24 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import SearchIcon from '@mui/icons-material/Search';
-
+import Badge from '@mui/material/Badge';
+import { useNavigate } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-
 import headerLogo from '../img/header-logo.png';
 import { ShoppingBasket } from '@mui/icons-material';
 import Banner from './Banner';
+import { Link } from '@mui/material';
 
-const pages = ['Главная', 'Каталог', 'О магазине', 'Каталог'];
+const pages = [
+	{ id: 0, label: 'Главная', route: '/' },
+	{ id: 1, label: 'Каталог', route: '/catalog' },
+	{ id: 2, label: 'О магазине', route: '/about' },
+	{ id: 3, label: 'Контакты', route: '/contacts' },
+];
 
 const Header = () => {
+	const navigate = useNavigate();
 	const Search = styled('div')(({ theme }) => ({
 		position: 'relative',
 		borderRadius: theme.shape.borderRadius,
@@ -62,18 +69,19 @@ const Header = () => {
 
 	return (
 		<div>
-			<AppBar position="static">
+			<AppBar position="static" elevation={0}>
 				<Container maxWidth="xl">
 					<Toolbar>
 						<img src={headerLogo} alt="header-logo" />
 
 						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-							{pages.map((page) => (
+							{pages.map((page, index) => (
 								<Button
-									key={page}
+									key={page.id}
+									onClick={() => navigate(page.route)}
 									sx={{ my: 2, color: 'black', display: 'block' }}
 								>
-									{page}
+									{page.label}
 								</Button>
 							))}
 						</Box>
@@ -89,9 +97,13 @@ const Header = () => {
 
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="В корзину">
-								<IconButton sx={{ p: 0 }} color="inherit">
-									<ShoppingBasket />
-								</IconButton>
+								<Link href="/basket">
+									<IconButton sx={{ p: 0 }} backgroundColor="primary">
+										<Badge badgeContent={4} color="secondary">
+											<ShoppingBasket />
+										</Badge>
+									</IconButton>
+								</Link>
 							</Tooltip>
 						</Box>
 					</Toolbar>

@@ -7,7 +7,7 @@
 }
 .banner-text {
 	font-size: 60px;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-family: Arial;
 	width: fit-content;
 	background: rgba(170, 169, 169, 0.4);
 	color: #fff;
@@ -22,7 +22,7 @@
 		font-size: 40px;
 		color: #fff;
 		bottom: 70px;
-		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-family: Arial, sans-serif;
 		background: rgba(170, 169, 169, 0.4);
 		color: #fff;
 		position: absolute;
@@ -33,4 +33,9 @@
 }
 .footer {
 	background-color: #f6f8fa;
+}
+
+.footer img {
+	width: 15%;
+	padding: 5px;
 }
