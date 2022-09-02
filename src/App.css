@@ -1,0 +1,36 @@
+.banner {
+	position: relative;
+	display: block;
+}
+.banner img {
+	width: 100%;
+}
+.banner-text {
+	font-size: 60px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	width: fit-content;
+	background: rgba(170, 169, 169, 0.4);
+	color: #fff;
+	position: absolute;
+	right: 0;
+	bottom: 150px;
+	padding: 10px 10px;
+}
+
+@media only screen and (min-width: 480px) {
+	.banner-text {
+		font-size: 40px;
+		color: #fff;
+		bottom: 70px;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		background: rgba(170, 169, 169, 0.4);
+		color: #fff;
+		position: absolute;
+		right: 0;
+		bottom: 30%;
+		padding: 10px 10px;
+	}
+}
+.footer {
+	background-color: #f6f8fa;
+}
