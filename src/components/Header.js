@@ -51,7 +51,6 @@ const Header = () => {
 	}));
 
 	const StyledInputBase = styled(InputBase)(({ theme }) => ({
-		color: 'inherit',
 		'& .MuiInputBase-input': {
 			padding: theme.spacing(1, 1, 1, 0),
 			// vertical padding + font size from searchIcon
@@ -87,7 +86,11 @@ const Header = () => {
 						</Box>
 						<Search>
 							<SearchIconWrapper>
-								<SearchIcon />
+								<SearchIcon
+									sx={{
+										color: 'primary.dark',
+									}}
+								/>
 							</SearchIconWrapper>
 							<StyledInputBase
 								placeholder="Search…"

@@ -17,7 +17,7 @@ const Footer = () => {
 			<Box sx={{ flexGrow: 1, p: 3 }} color="gray">
 				<Grid container spacing={15}>
 					<Grid item xs={4}>
-						<Box sx={{ mx: 'auto', fontWeight: '700' }} color="black">
+						<Box sx={{ mx: 'auto', my: 2, fontWeight: '700' }} color="black">
 							Информация
 						</Box>
 						<Box sx={{ p: 1 }}>
@@ -37,7 +37,7 @@ const Footer = () => {
 						</Box>
 					</Grid>
 					<Grid item xs={4}>
-						<Box sx={{ mx: 'auto', fontWeight: '700' }} color="black">
+						<Box sx={{ mx: 'auto', my: 2, fontWeight: '700' }} color="black">
 							Принимаем к оплате
 						</Box>
 						<Box>
@@ -54,7 +54,7 @@ const Footer = () => {
 					</Grid>
 					<Grid item xs={4}>
 						<Box
-							sx={{ mx: 'auto', fontWeight: '700', textAlign: 'right' }}
+							sx={{ mx: 'auto', my: 2, fontWeight: '700', textAlign: 'right' }}
 							color="black"
 						>
 							Контакты
