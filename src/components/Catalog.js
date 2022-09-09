@@ -13,7 +13,7 @@ const items = [
 	'Детская обувь',
 ];
 
-const Catalog = () => {
+const Catalog = ({ value, onChangeCategory }) => {
 	return (
 		<Box sx={{ mx: 5, fontFamily: 'Arial' }}>
 			<Header />
@@ -36,10 +36,12 @@ const Catalog = () => {
 				}}
 			/>
 			<Stack spacing={3} direction="row" justifyContent="center">
-				{items.map((item) => (
+				{items.map((item, i) => (
 					<Button
 						key={item}
-						onClick={() => {}}
+						onClick={() => {
+							onChangeCategory(i);
+						}}
 						sx={{
 							my: 2,
 							color: 'dodgerblue',

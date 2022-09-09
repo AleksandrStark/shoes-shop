@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/system';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 const theme = createTheme({
 	typography: {
@@ -47,9 +49,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<ThemeProvider theme={theme}>
-				<App />
-			</ThemeProvider>
+			<Provider store={store}>
+				<ThemeProvider theme={theme}>
+					<App />
+				</ThemeProvider>
+			</Provider>
 		</BrowserRouter>
 	</React.StrictMode>
 );

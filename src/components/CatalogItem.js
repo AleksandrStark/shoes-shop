@@ -5,10 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import sneakers from '../img/products/сlassic_sneakers_2.jpg';
 import { Box, Grid } from '@mui/material';
 
-export default function CatalogItem() {
+export default function CatalogItem({ title, images, price }) {
 	return (
 		<Grid item xs={12} md={4}>
 			<Card
@@ -17,17 +16,17 @@ export default function CatalogItem() {
 				}}
 			>
 				<CardMedia
-					image={sneakers}
+					image={images[0]}
 					component="img"
 					alt="sneakers"
-					title="sneakers"
-					sx={{ height: 350 }}
+					title={title}
+					sx={{ height: 250 }}
 				/>
 				<CardContent>
 					<Typography variant="h6" component="h3">
-						sneakers
+						{title}
 					</Typography>
-					<Typography variant="body1">Цена: 34000 руб.</Typography>
+					<Typography variant="body1">Цена: {price} руб.</Typography>
 				</CardContent>
 				<CardActions>
 					<Box textAlign="center" sx={{ my: 2 }}>
@@ -39,7 +38,7 @@ export default function CatalogItem() {
 								border: 1,
 								'&:hover': {
 									color: 'white',
-									backgroundColor: 'secondary.light',
+									backgroundcolor: 'secondary.light',
 								},
 							}}
 						>
