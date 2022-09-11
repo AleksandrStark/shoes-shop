@@ -68,8 +68,19 @@ const Header = () => {
 
 	return (
 		<div>
-			<AppBar position="static" elevation={0}>
-				<Container maxWidth="xl">
+			<AppBar
+				position="static"
+				sx={{
+					backgroundColor: 'primary.light',
+					boxShadow: 0,
+				}}
+			>
+				<Container
+					maxWidth="xl"
+					sx={{
+						color: 'primary.light',
+					}}
+				>
 					<Toolbar>
 						<img src={headerLogo} alt="header-logo" />
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import CatalogItem from './CatalogItem';
-import items from '../backend/data/products.json';
-
+import SkeletonCard from './Skeleton';
 const ItemsList = (props) => {
 	const [items, setItems] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		fetch('https://631affcbfae3df4dcff15474.mockapi.io/items')
@@ -18,18 +18,21 @@ const ItemsList = (props) => {
 		//   return () => {
 		// 	second
 		//   }
+		setIsLoading(false);
 	}, []);
 
 	return (
-		<Grid container spacing={2} sx={{ my: 3 }}>
-			{items.map((item) => (
-				<CatalogItem
-					key={item.id}
-					title={item.title}
-					images={item.images}
-					price={item.price}
-				/>
-			))}
+		<Grid container spacing={3} sx={{ mt: 0 }}>
+			{isLoading
+				? [...new Array(6)].map((_, i) => <SkeletonCard key={i} />)
+				: items.map((item) => (
+						<CatalogItem
+							key={item.id}
+							title={item.title}
+							images={item.images}
+							price={item.price}
+						/>
+				  ))}
 		</Grid>
 	);
 };

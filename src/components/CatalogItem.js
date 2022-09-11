@@ -38,7 +38,7 @@ export default function CatalogItem({ title, images, price }) {
 								border: 1,
 								'&:hover': {
 									color: 'white',
-									backgroundcolor: 'secondary.light',
+									backgroundColor: 'secondary.light',
 								},
 							}}
 						>
