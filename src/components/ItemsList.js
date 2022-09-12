@@ -2,12 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import CatalogItem from './CatalogItem';
 import SkeletonCard from './Skeleton';
-const ItemsList = (props) => {
+
+const ItemsList = ({ categoryId }) => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	console.log(categoryId);
+	let url = '';
+	if (categoryId === 0) {
+		url = 'https://631affcbfae3df4dcff15474.mockapi.io/items';
+	} else {
+		url =
+			'https://631affcbfae3df4dcff15474.mockapi.io/items?category=' +
+			categoryId;
+	}
 
 	useEffect(() => {
-		fetch('https://631affcbfae3df4dcff15474.mockapi.io/items')
+		setIsLoading(true);
+		fetch(url)
 			.then((res) => {
 				return res.json();
 			})
@@ -19,7 +30,7 @@ const ItemsList = (props) => {
 		// 	second
 		//   }
 		setIsLoading(false);
-	}, []);
+	}, [url]);
 
 	return (
 		<Grid container spacing={3} sx={{ mt: 0 }}>

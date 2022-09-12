@@ -1,6 +1,6 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import ItemsList from './ItemsList';
@@ -13,7 +13,9 @@ const items = [
 	'Детская обувь',
 ];
 
-const Catalog = ({ value, onChangeCategory }) => {
+const Catalog = () => {
+	const [categoryId, setCategoryId] = useState(0);
+
 	return (
 		<Box sx={{ mx: 5, fontFamily: 'Arial' }}>
 			<Header />
@@ -40,7 +42,7 @@ const Catalog = ({ value, onChangeCategory }) => {
 					<Button
 						key={item}
 						onClick={() => {
-							onChangeCategory(i);
+							setCategoryId(i);
 						}}
 						sx={{
 							my: 2,
@@ -53,7 +55,7 @@ const Catalog = ({ value, onChangeCategory }) => {
 				))}
 			</Stack>
 			<Container>
-				<ItemsList />
+				<ItemsList categoryId={categoryId} />
 			</Container>
 			<Box textAlign="center" sx={{ my: 2 }}>
 				<Button
