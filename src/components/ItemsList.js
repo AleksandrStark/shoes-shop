@@ -7,18 +7,14 @@ const ItemsList = ({ categoryId }) => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	console.log(categoryId);
-	let url = '';
-	if (categoryId === 0) {
-		url = 'https://631affcbfae3df4dcff15474.mockapi.io/items';
-	} else {
-		url =
-			'https://631affcbfae3df4dcff15474.mockapi.io/items?category=' +
-			categoryId;
-	}
 
 	useEffect(() => {
 		setIsLoading(true);
-		fetch(url)
+		fetch(
+			`https://631affcbfae3df4dcff15474.mockapi.io/items?${
+				categoryId > 0 ? `category=${categoryId}` : ''
+			}`
+		)
 			.then((res) => {
 				return res.json();
 			})
@@ -30,8 +26,7 @@ const ItemsList = ({ categoryId }) => {
 		// 	second
 		//   }
 		setIsLoading(false);
-		window.scrollTo(0, 0);
-	}, [url]);
+	}, [categoryId]);
 
 	return (
 		<Grid container spacing={3} sx={{ mt: 0 }}>
