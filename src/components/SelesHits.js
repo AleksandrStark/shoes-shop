@@ -3,35 +3,30 @@ import { Grid } from '@mui/material';
 import CatalogItem from './CatalogItem';
 import SkeletonCard from './Skeleton';
 
-const ItemsList = ({ categoryId }) => {
+const SelesHits = () => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	console.log(categoryId);
-	let url = '';
-	if (categoryId === 0) {
-		url = 'https://631affcbfae3df4dcff15474.mockapi.io/items';
-	} else {
-		url =
-			'https://631affcbfae3df4dcff15474.mockapi.io/items?category=' +
-			categoryId;
-	}
 
 	useEffect(() => {
 		setIsLoading(true);
-		fetch(url)
+		fetch('https://631affcbfae3df4dcff15474.mockapi.io/items')
 			.then((res) => {
 				return res.json();
 			})
 			.then((arr) => {
-				setItems(arr);
+				arr.sort(function (a, b) {
+					return parseFloat(b.sold) - parseFloat(a.sold);
+				});
+				let selesHitsArr = [arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]];
+
+				setItems(selesHitsArr);
 			});
 
 		//   return () => {
 		// 	second
 		//   }
 		setIsLoading(false);
-		window.scrollTo(0, 0);
-	}, [url]);
+	}, []);
 
 	return (
 		<Grid container spacing={3} sx={{ mt: 0 }}>
@@ -49,4 +44,4 @@ const ItemsList = ({ categoryId }) => {
 	);
 };
 
-export default ItemsList;
+export default SelesHits;

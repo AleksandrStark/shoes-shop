@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import ItemsList from './ItemsList';
+import SelesHits from './SelesHits';
 
 const Main = () => {
 	return (
@@ -17,7 +17,7 @@ const Main = () => {
 			>
 				Хиты продаж
 			</Typography>
-			<ItemsList />
+			<SelesHits />
 			<Footer />
 		</Box>
 	);
