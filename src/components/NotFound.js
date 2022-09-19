@@ -6,7 +6,6 @@ import Header from './Header';
 const NotFound = () => {
 	return (
 		<Box sx={{ mx: 5, fontFamily: 'monospace' }}>
-			<Header />
 			<Box>
 				<Typography
 					variant="h4"
@@ -24,7 +23,6 @@ const NotFound = () => {
 			<Box>
 				<Typography my={2}>Извините, такая страница не найдена!</Typography>
 			</Box>
-			<Footer />
 		</Box>
 	);
 };

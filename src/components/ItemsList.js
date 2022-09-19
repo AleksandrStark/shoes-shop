@@ -3,10 +3,27 @@ import { Grid } from '@mui/material';
 import CatalogItem from './CatalogItem';
 import SkeletonCard from './Skeleton';
 
-const ItemsList = ({ categoryId }) => {
+const ItemsList = ({ categoryId, searchValue }) => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	console.log(categoryId);
+
+	const skeleton = [...new Array(6)].map((_, i) => <SkeletonCard key={i} />);
+	const shoes = items
+		.filter((obj) => {
+			if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+				return true;
+			}
+			return false;
+		})
+		.map((item) => (
+			<CatalogItem
+				key={item.id}
+				title={item.title}
+				images={item.images}
+				price={item.price}
+			/>
+		));
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -30,16 +47,7 @@ const ItemsList = ({ categoryId }) => {
 
 	return (
 		<Grid container spacing={3} sx={{ mt: 0 }}>
-			{isLoading
-				? [...new Array(6)].map((_, i) => <SkeletonCard key={i} />)
-				: items.map((item) => (
-						<CatalogItem
-							key={item.id}
-							title={item.title}
-							images={item.images}
-							price={item.price}
-						/>
-				  ))}
+			{isLoading ? skeleton : shoes}
 		</Grid>
 	);
 };

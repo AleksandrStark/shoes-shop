@@ -1,8 +1,6 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useState } from 'react';
-import Footer from './Footer';
-import Header from './Header';
 import ItemsList from './ItemsList';
 
 const items = [
@@ -13,12 +11,11 @@ const items = [
 	'Детская обувь',
 ];
 
-const Catalog = () => {
+const Catalog = ({ searchValue }) => {
 	const [categoryId, setCategoryId] = useState(0);
 
 	return (
 		<Box sx={{ mx: 5, fontFamily: 'Arial' }}>
-			<Header />
 			<Typography
 				variant="h4"
 				sx={{
@@ -55,7 +52,7 @@ const Catalog = () => {
 				))}
 			</Stack>
 			<Container>
-				<ItemsList categoryId={categoryId} />
+				<ItemsList categoryId={categoryId} searchValue={searchValue} />
 			</Container>
 			<Box textAlign="center" sx={{ my: 2 }}>
 				<Button
@@ -73,8 +70,6 @@ const Catalog = () => {
 					Загрузить ещё
 				</Button>
 			</Box>
-
-			<Footer />
 		</Box>
 	);
 };

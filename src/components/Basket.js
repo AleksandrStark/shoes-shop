@@ -8,8 +8,6 @@ import {
 	Typography,
 } from '@mui/material';
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -49,7 +47,6 @@ const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 const Basket = () => {
 	return (
 		<Box sx={{ mx: 5, fontFamily: 'Arial' }}>
-			<Header />
 			<Box>
 				<Typography
 					variant="h4"
@@ -192,7 +189,6 @@ const Basket = () => {
 					</Box>
 				</Paper>
 			</Box>
-			<Footer />
 		</Box>
 	);
 };

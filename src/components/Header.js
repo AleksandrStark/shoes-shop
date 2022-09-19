@@ -13,6 +13,8 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import headerLogo from '../img/header-logo.png';
 import { ShoppingBasket } from '@mui/icons-material';
+import CloseIcon from '@mui/icons-material/Close';
+
 import Banner from './Banner';
 import { Link } from '@mui/material';
 
@@ -23,7 +25,7 @@ const pages = [
 	{ id: 3, label: 'Контакты', route: '/contacts' },
 ];
 
-const Header = () => {
+const Header = ({ searchValue, setSearchValue }) => {
 	const navigate = useNavigate();
 	const Search = styled('div')(({ theme }) => ({
 		position: 'relative',
@@ -106,7 +108,17 @@ const Header = () => {
 							<StyledInputBase
 								placeholder="Search…"
 								inputProps={{ 'aria-label': 'search' }}
+								onChange={(e) => setSearchValue(e.target.value)}
+								value={searchValue}
 							/>
+							{searchValue && (
+								<CloseIcon
+									sx={{
+										color: 'primary.dark',
+									}}
+									onClick={() => setSearchValue('')}
+								/>
+							)}
 						</Search>
 
 						<Box sx={{ flexGrow: 0 }}>

@@ -1,12 +1,9 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
 
 const Contacts = () => {
 	return (
 		<Box sx={{ mx: 5 }}>
-			<Header />
 			<Box>
 				<Typography
 					variant="h4"
@@ -50,7 +47,6 @@ const Contacts = () => {
 					<Box>Email: office@bosanoga.ru</Box>
 				</Typography>
 			</Box>
-			<Footer />
 		</Box>
 	);
 };
