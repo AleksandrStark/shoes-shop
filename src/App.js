@@ -22,7 +22,12 @@ function App() {
 				<Route
 					exact
 					path="/catalog"
-					element={<Catalog searchValue={searchValue} />}
+					element={
+						<Catalog
+							searchValue={searchValue}
+							setSearchValue={setSearchValue}
+						/>
+					}
 				></Route>
 				<Route exact path="/about" element={<About />}></Route>
 				<Route exact path="/contacts" element={<Contacts />}></Route>

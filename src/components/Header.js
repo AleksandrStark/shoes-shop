@@ -6,17 +6,15 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import { useNavigate } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
 import headerLogo from '../img/header-logo.png';
 import { ShoppingBasket } from '@mui/icons-material';
-import CloseIcon from '@mui/icons-material/Close';
 
 import Banner from './Banner';
 import { Link } from '@mui/material';
+import SearchItem from './SearchItem';
 
 const pages = [
 	{ id: 0, label: 'Главная', route: '/' },
@@ -39,32 +37,6 @@ const Header = ({ searchValue, setSearchValue }) => {
 		[theme.breakpoints.up('sm')]: {
 			marginLeft: theme.spacing(1),
 			width: 'auto',
-		},
-	}));
-
-	const SearchIconWrapper = styled('div')(({ theme }) => ({
-		padding: theme.spacing(0, 2),
-		height: '100%',
-		position: 'absolute',
-		pointerEvents: 'none',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-	}));
-
-	const StyledInputBase = styled(InputBase)(({ theme }) => ({
-		'& .MuiInputBase-input': {
-			padding: theme.spacing(1, 1, 1, 0),
-			// vertical padding + font size from searchIcon
-			paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-			transition: theme.transitions.create('width'),
-			width: '100%',
-			[theme.breakpoints.up('sm')]: {
-				width: '12ch',
-				'&:focus': {
-					width: '20ch',
-				},
-			},
 		},
 	}));
 
@@ -98,27 +70,10 @@ const Header = ({ searchValue, setSearchValue }) => {
 							))}
 						</Box>
 						<Search>
-							<SearchIconWrapper>
-								<SearchIcon
-									sx={{
-										color: 'primary.dark',
-									}}
-								/>
-							</SearchIconWrapper>
-							<StyledInputBase
-								placeholder="Search…"
-								inputProps={{ 'aria-label': 'search' }}
-								onChange={(e) => setSearchValue(e.target.value)}
-								value={searchValue}
+							<SearchItem
+								searchValue={searchValue}
+								setSearchValue={setSearchValue}
 							/>
-							{searchValue && (
-								<CloseIcon
-									sx={{
-										color: 'primary.dark',
-									}}
-									onClick={() => setSearchValue('')}
-								/>
-							)}
 						</Search>
 
 						<Box sx={{ flexGrow: 0 }}>

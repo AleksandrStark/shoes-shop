@@ -1,4 +1,6 @@
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import styled from '@emotion/styled';
+import { Box, Button, Container, InputBase, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import { Stack } from '@mui/system';
 import React, { useState } from 'react';
 import ItemsList from './ItemsList';
@@ -11,7 +13,7 @@ const items = [
 	'Детская обувь',
 ];
 
-const Catalog = ({ searchValue }) => {
+const Catalog = ({ searchValue, setSearchValue }) => {
 	const [categoryId, setCategoryId] = useState(0);
 
 	return (
@@ -25,15 +27,7 @@ const Catalog = ({ searchValue }) => {
 			>
 				Каталог
 			</Typography>
-			<TextField
-				size="small"
-				id="outlined-basic"
-				label="Поиск"
-				variant="outlined"
-				sx={{
-					width: 230,
-				}}
-			/>
+
 			<Stack spacing={3} direction="row" justifyContent="center">
 				{items.map((item, i) => (
 					<Button
