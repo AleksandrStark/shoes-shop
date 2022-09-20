@@ -1,6 +1,4 @@
-import styled from '@emotion/styled';
-import { Box, Button, Container, InputBase, Typography } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React, { useState } from 'react';
 import ItemsList from './ItemsList';
