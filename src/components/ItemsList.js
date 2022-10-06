@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Pagination } from '@mui/material';
 import CatalogItem from './CatalogItem';
 import SkeletonCard from './Skeleton';
 
 const ItemsList = ({ categoryId, searchValue }) => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	console.log(categoryId);
+	const [page, setPage] = useState(1);
+	const [pageQrt, setPageQrt] = useState(11);
 
 	const skeleton = [...new Array(6)].map((_, i) => <SkeletonCard key={i} />);
+	const category = categoryId > 0 ? `category=${categoryId}` : '';
+	const search = searchValue ? `search=${searchValue}` : '';
+
 	const shoes = items
-		.filter((obj) => {
-			if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
-				return true;
-			}
-			return false;
-		})
+		// .filter((obj) => {
+		// 	if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+		// 		return true;
+		// 	}
+		// 	return false;
+		// })
 		.map((item) => (
 			<CatalogItem
 				key={item.id}
@@ -28,9 +32,7 @@ const ItemsList = ({ categoryId, searchValue }) => {
 	useEffect(() => {
 		setIsLoading(true);
 		fetch(
-			`https://631affcbfae3df4dcff15474.mockapi.io/items?${
-				categoryId > 0 ? `category=${categoryId}` : ''
-			}`
+			`https://631affcbfae3df4dcff15474.mockapi.io/items?page=${page}&limit=6&${category}&${search}`
 		)
 			.then((res) => {
 				return res.json();
@@ -43,12 +45,19 @@ const ItemsList = ({ categoryId, searchValue }) => {
 		// 	second
 		//   }
 		setIsLoading(false);
-	}, [categoryId]);
+	}, [category, search, page]);
 
 	return (
-		<Grid container spacing={3} sx={{ mt: 0 }}>
-			{isLoading ? skeleton : shoes}
-		</Grid>
+		<>
+			<Pagination
+				count={pageQrt}
+				page={page}
+				onChange={(_, num) => setPage(num)}
+			/>
+			<Grid container spacing={3} sx={{ mt: 0 }}>
+				{isLoading ? skeleton : shoes}
+			</Grid>
+		</>
 	);
 };
 
