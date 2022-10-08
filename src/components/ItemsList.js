@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Pagination } from '@mui/material';
 import CatalogItem from './CatalogItem';
 import SkeletonCard from './Skeleton';
+import axios from 'axios';
 
 const ItemsList = ({ categoryId, searchValue }) => {
 	const [items, setItems] = useState([]);
@@ -31,19 +32,13 @@ const ItemsList = ({ categoryId, searchValue }) => {
 
 	useEffect(() => {
 		setIsLoading(true);
-		fetch(
-			`https://631affcbfae3df4dcff15474.mockapi.io/items?page=${page}&limit=6&${category}&${search}`
-		)
-			.then((res) => {
-				return res.json();
-			})
-			.then((arr) => {
-				setItems(arr);
-			});
 
-		//   return () => {
-		// 	second
-		//   }
+		axios
+			.get(
+				`https://631affcbfae3df4dcff15474.mockapi.io/items?page=${page}&limit=6&${category}&${search}`
+			)
+			.then((res) => setItems(res.data));
+
 		setIsLoading(false);
 	}, [category, search, page]);
 
