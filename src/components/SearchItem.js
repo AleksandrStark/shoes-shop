@@ -1,8 +1,11 @@
 import React from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import { InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { setSearchValue } from '../redux/slices/searchSlice';
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
@@ -30,7 +33,10 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 	justifyContent: 'center',
 }));
 
-const SearchItem = ({ searchValue, setSearchValue }) => {
+const SearchItem = () => {
+	const searchValue = useSelector((state) => state.search.searchValue);
+	const dispatch = useDispatch();
+
 	return (
 		<div>
 			<SearchIconWrapper>
@@ -47,7 +53,7 @@ const SearchItem = ({ searchValue, setSearchValue }) => {
 				placeholder="Search…"
 				autoFocus={true}
 				inputProps={{ 'aria-label': 'search' }}
-				onChange={(e) => setSearchValue(e.target.value)}
+				onChange={(e) => dispatch(setSearchValue(e.target.value))}
 				value={searchValue}
 			/>
 			{searchValue && (
@@ -55,7 +61,7 @@ const SearchItem = ({ searchValue, setSearchValue }) => {
 					sx={{
 						color: 'primary.dark',
 					}}
-					onClick={() => setSearchValue('')}
+					onClick={() => dispatch(setSearchValue(''))}
 				/>
 			)}
 		</div>

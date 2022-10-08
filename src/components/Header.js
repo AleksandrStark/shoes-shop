@@ -23,7 +23,7 @@ const pages = [
 	{ id: 3, label: 'Контакты', route: '/contacts' },
 ];
 
-const Header = ({ searchValue, setSearchValue }) => {
+const Header = () => {
 	const navigate = useNavigate();
 	const Search = styled('div')(({ theme }) => ({
 		position: 'relative',
@@ -70,10 +70,7 @@ const Header = ({ searchValue, setSearchValue }) => {
 							))}
 						</Box>
 						<Search>
-							<SearchItem
-								searchValue={searchValue}
-								setSearchValue={setSearchValue}
-							/>
+							<SearchItem />
 						</Search>
 
 						<Box sx={{ flexGrow: 0 }}>

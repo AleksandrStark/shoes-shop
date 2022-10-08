@@ -13,7 +13,6 @@ import Footer from './components/Footer';
 
 function App() {
 	const [searchValue, setSearchValue] = useState('');
-	console.log(searchValue);
 	return (
 		<div>
 			<Header searchValue={searchValue} setSearchValue={setSearchValue} />

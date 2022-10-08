@@ -3,12 +3,16 @@ import { Grid, Pagination } from '@mui/material';
 import CatalogItem from './CatalogItem';
 import SkeletonCard from './Skeleton';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
-const ItemsList = ({ categoryId, searchValue }) => {
+const ItemsList = () => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [page, setPage] = useState(1);
 	const [pageQrt, setPageQrt] = useState(11);
+
+	const categoryId = useSelector((state) => state.filter.categoryId);
+	const searchValue = useSelector((state) => state.search.searchValue);
 
 	const skeleton = [...new Array(6)].map((_, i) => <SkeletonCard key={i} />);
 	const category = categoryId > 0 ? `category=${categoryId}` : '';

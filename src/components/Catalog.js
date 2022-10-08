@@ -2,7 +2,7 @@ import { Box, Button, Container, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import ItemsList from './ItemsList';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId } from '../redux/slices/filterSlise';
+import { setCategoryId } from '../redux/slices/filterSlice';
 
 const items = [
 	'Все',
@@ -50,7 +50,7 @@ const Catalog = ({ searchValue, setSearchValue }) => {
 				))}
 			</Stack>
 			<Container>
-				<ItemsList categoryId={categoryId} searchValue={searchValue} />
+				<ItemsList />
 			</Container>
 			<Box textAlign="center" sx={{ my: 2 }}></Box>
 		</Box>
