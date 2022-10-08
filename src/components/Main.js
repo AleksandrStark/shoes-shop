@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import SelesHits from './SelesHits';
+import SalesHits from './SalesHits';
 
 const Main = () => {
 	return (
@@ -14,7 +14,7 @@ const Main = () => {
 			>
 				Хиты продаж
 			</Typography>
-			<SelesHits />
+			<SalesHits />
 		</Box>
 	);
 };

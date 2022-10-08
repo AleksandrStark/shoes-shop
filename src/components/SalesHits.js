@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import CatalogItem from './CatalogItem';
 import SkeletonCard from './Skeleton';
 
-const SelesHits = () => {
+const SalesHits = () => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -44,4 +44,4 @@ const SelesHits = () => {
 	);
 };
 
-export default SelesHits;
+export default SalesHits;

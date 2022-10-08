@@ -1,7 +1,8 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
-import React, { useState } from 'react';
 import ItemsList from './ItemsList';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategoryId } from '../redux/slices/filterSlise';
 
 const items = [
 	'Все',
@@ -12,7 +13,12 @@ const items = [
 ];
 
 const Catalog = ({ searchValue, setSearchValue }) => {
-	const [categoryId, setCategoryId] = useState(0);
+	const categoryId = useSelector((state) => state.filter.categoryId);
+	const dispatch = useDispatch();
+
+	const onChangeCategory = (id) => {
+		dispatch(setCategoryId(id));
+	};
 
 	return (
 		<Box sx={{ mx: 5, fontFamily: 'Arial' }}>
@@ -31,7 +37,7 @@ const Catalog = ({ searchValue, setSearchValue }) => {
 					<Button
 						key={item}
 						onClick={() => {
-							setCategoryId(i);
+							onChangeCategory(i);
 						}}
 						sx={{
 							my: 2,
@@ -46,22 +52,7 @@ const Catalog = ({ searchValue, setSearchValue }) => {
 			<Container>
 				<ItemsList categoryId={categoryId} searchValue={searchValue} />
 			</Container>
-			<Box textAlign="center" sx={{ my: 2 }}>
-				<Button
-					variant="outlined"
-					size="medium"
-					sx={{
-						color: 'secondary.light',
-						border: 1,
-						'&:hover': {
-							color: 'white',
-							backgroundColor: 'secondary.light',
-						},
-					}}
-				>
-					Загрузить ещё
-				</Button>
-			</Box>
+			<Box textAlign="center" sx={{ my: 2 }}></Box>
 		</Box>
 	);
 };

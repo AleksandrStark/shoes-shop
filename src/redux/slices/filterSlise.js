@@ -8,7 +8,7 @@ export const filterSlice = createSlice({
 	name: 'filter',
 	initialState,
 	reducers: {
-		setCategoryId: (state, action) => {
+		setCategoryId(state, action) {
 			state.categoryId = action.payload;
 		},
 	},
