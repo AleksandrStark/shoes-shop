@@ -34,14 +34,7 @@ const ItemsList = () => {
 		// 	}
 		// 	return false;
 		// })
-		.map((item) => (
-			<CatalogItem
-				key={item.id}
-				title={item.title}
-				images={item.images}
-				price={item.price}
-			/>
-		));
+		.map((item) => <CatalogItem key={item.id} {...item} />);
 
 	const fetchShoes = () => {
 		setIsLoading(true);

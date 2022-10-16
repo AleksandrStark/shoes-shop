@@ -6,8 +6,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Box, Grid } from '@mui/material';
+import { addItem } from '../redux/slices/cartSlice';
 
-export default function CatalogItem({ title, images, price }) {
+import { useDispatch, useSelector } from 'react-redux';
+
+export default function CatalogItem({ id, title, images, price }) {
+	const dispatch = useDispatch();
+
+	const onClickAdd = () => {
+		const item = {
+			id,
+			title,
+			price,
+		};
+		dispatch(addItem(item));
+	};
+
 	return (
 		<Grid item xs={12} md={4}>
 			<Card
@@ -33,6 +47,7 @@ export default function CatalogItem({ title, images, price }) {
 						<Button
 							variant="outlined"
 							size="medium"
+							onClick={onClickAdd}
 							sx={{
 								color: 'secondary.light',
 								border: 1,

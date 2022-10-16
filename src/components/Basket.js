@@ -65,7 +65,6 @@ const Basket = () => {
 						<TableRow>
 							<TableCell>#</TableCell>
 							<TableCell align="right">Название</TableCell>
-							<TableCell align="right">Размер</TableCell>
 							<TableCell align="right">Количество</TableCell>
 							<TableCell align="right">Стоимость</TableCell>
 							<TableCell align="right">Итого</TableCell>
@@ -78,7 +77,6 @@ const Basket = () => {
 								<TableCell>{row.desc}</TableCell>
 								<TableCell align="right">{row.qty}</TableCell>
 								<TableCell align="right">{row.unit}</TableCell>
-								<TableCell align="right">{ccyFormat(row.price)}</TableCell>
 								<TableCell align="right">{ccyFormat(row.price)}</TableCell>
 								<TableCell align="right">{ccyFormat(row.price)}</TableCell>
 								<TableCell align="right">

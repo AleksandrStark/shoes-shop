@@ -12,6 +12,8 @@ import { styled, alpha } from '@mui/material/styles';
 import headerLogo from '../img/header-logo.png';
 import { ShoppingBasket } from '@mui/icons-material';
 
+import { useSelector } from 'react-redux';
+
 import Banner from './Banner';
 import { Link } from '@mui/material';
 import SearchItem from './SearchItem';
@@ -24,7 +26,10 @@ const pages = [
 ];
 
 const Header = () => {
+	const { items, totalPrice } = useSelector((state) => state.cart);
+	console.log(totalPrice);
 	const navigate = useNavigate();
+
 	const Search = styled('div')(({ theme }) => ({
 		position: 'relative',
 		borderRadius: theme.shape.borderRadius,
@@ -77,7 +82,7 @@ const Header = () => {
 							<Tooltip title="В корзину">
 								<Link href="/basket">
 									<IconButton sx={{ p: 0 }} backgroundColor="primary">
-										<Badge badgeContent={4} color="secondary">
+										<Badge badgeContent={items.length} color="secondary">
 											<ShoppingBasket />
 										</Badge>
 									</IconButton>
