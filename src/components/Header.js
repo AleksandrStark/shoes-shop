@@ -28,6 +28,8 @@ const pages = [
 const Header = () => {
 	const { items, totalPrice } = useSelector((state) => state.cart);
 	console.log(totalPrice);
+
+	const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 	const navigate = useNavigate();
 
 	const Search = styled('div')(({ theme }) => ({
@@ -80,13 +82,11 @@ const Header = () => {
 
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="В корзину">
-								<Link href="/basket">
-									<IconButton sx={{ p: 0 }} backgroundColor="primary">
-										<Badge badgeContent={items.length} color="secondary">
-											<ShoppingBasket />
-										</Badge>
-									</IconButton>
-								</Link>
+								<IconButton sx={{ p: 0 }} backgroundColor="primary">
+									<Badge badgeContent={totalCount} color="secondary">
+										<ShoppingBasket onClick={() => navigate('/basket')} />
+									</Badge>
+								</IconButton>
 							</Tooltip>
 						</Box>
 					</Toolbar>

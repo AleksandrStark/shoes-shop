@@ -3,7 +3,6 @@ import {
 	Button,
 	Checkbox,
 	FormControlLabel,
-	Grid,
 	TextField,
 	Typography,
 } from '@mui/material';
@@ -15,36 +14,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-const TAX_RATE = 0.07;
-
-function ccyFormat(num) {
-	return `${num.toFixed(2)}`;
-}
-
-function priceRow(qty, unit) {
-	return qty * unit;
-}
-
-function createRow(desc, qty, unit) {
-	const price = priceRow(qty, unit);
-	return { desc, qty, unit, price };
-}
-
-function subtotal(items) {
-	return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
-const rows = [
-	createRow('Paperclips (Box)', 100, 1.15),
-	createRow('Paper (Case)', 10, 45.99),
-	createRow('Waste Basket', 2, 17.99),
-];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
+import { useSelector, useDispatch } from 'react-redux';
+import { removeItem } from '../redux/slices/cartSlice';
 
 const Basket = () => {
+	const dispatch = useDispatch();
+	const { items, totalPrice } = useSelector((state) => state.cart);
+
+	console.log(items);
+
+	console.log(totalPrice);
+
 	return (
 		<Box sx={{ mx: 5, fontFamily: 'Arial' }}>
 			<Box>
@@ -72,17 +52,20 @@ const Basket = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{rows.map((row) => (
-							<TableRow key={row.desc}>
-								<TableCell>{row.desc}</TableCell>
-								<TableCell align="right">{row.qty}</TableCell>
-								<TableCell align="right">{row.unit}</TableCell>
-								<TableCell align="right">{ccyFormat(row.price)}</TableCell>
-								<TableCell align="right">{ccyFormat(row.price)}</TableCell>
+						{items.map((obj, i) => (
+							<TableRow key={obj.id}>
+								<TableCell>{i + 1}</TableCell>
+								<TableCell align="right">{obj.title}</TableCell>
+								<TableCell align="right">{obj.count}</TableCell>
+								<TableCell align="right">{obj.price}</TableCell>
+								<TableCell align="right">{obj.price * obj.count}</TableCell>
 								<TableCell align="right">
 									<Button
 										variant="outlined"
 										size="medium"
+										onClick={() => {
+											dispatch(removeItem(obj.id));
+										}}
 										sx={{
 											color: 'error.main',
 											border: 1,
@@ -105,7 +88,7 @@ const Basket = () => {
 							<TableCell colSpan={2} align="right">
 								Общая стоимость
 							</TableCell>
-							<TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
+							<TableCell align="right">{totalPrice}</TableCell>
 						</TableRow>
 					</TableBody>
 				</Table>
@@ -170,7 +153,7 @@ const Basket = () => {
 					/>
 					<Box textAlign="center">
 						<Button
-							type="submit"
+							// type="submit"
 							variant="outlined"
 							size="medium"
 							sx={{

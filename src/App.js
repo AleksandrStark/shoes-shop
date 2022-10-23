@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Catalog from './components/Catalog';
@@ -12,22 +12,12 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
-	const [searchValue, setSearchValue] = useState('');
 	return (
 		<div>
-			<Header searchValue={searchValue} setSearchValue={setSearchValue} />
+			<Header />
 			<Routes>
 				<Route path="/" element={<Main />}></Route>
-				<Route
-					exact
-					path="/catalog"
-					element={
-						<Catalog
-							searchValue={searchValue}
-							setSearchValue={setSearchValue}
-						/>
-					}
-				></Route>
+				<Route exact path="/catalog" element={<Catalog />}></Route>
 				<Route exact path="/about" element={<About />}></Route>
 				<Route exact path="/contacts" element={<Contacts />}></Route>
 				<Route exact path="/item" element={<CatalogItem />}></Route>
